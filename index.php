@@ -7,8 +7,9 @@
     </head>
     <body>
         <?php
+        // put your code here
         
-        phpinfo();
+            phpinfo();
         
         ?>
     </body>
