@@ -31,7 +31,7 @@ if ( count($errors) > 0 ) {
     }
 } else {
     
- $DatabaseConfig-> DatabaseConfig();
+ $DatabaseConfig-> DatabaseConfig($EmailType);
 }
         
         ?>
