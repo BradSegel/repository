@@ -13,13 +13,13 @@
 $util = new Util();
 $validator = new Validator();
 
-$phoneType = filter_input(INPUT_POST, 'Emailtype');
+$EmailType = filter_input(INPUT_POST, 'emailtype');
 
 $errors = array();
 
 if ( $util->isPostRequest() ) {
 
-    if ( !$validator->emailTypeIsValid($EmailType) ) {
+    if (!$validator->emailTypeIsValid($EmailType)) {
         $errors[] = 'email type is not valid';
     }
 }
@@ -30,10 +30,7 @@ if ( count($errors) > 0 ) {
     }
 } else {
     
- $dbConfig =array(
-     "DB__DNS"=>'mysql:host=localhost;port=3306;dbname=PHPadvClassSpring2015',
-     "DB_USER"=>'root',
-     "DB_PASSWORD"=>'');
+ $dbConfig =array("DB_DNS"=>'mysql:host=localhost;port=3306;dbname=PHPadvClassSpring2015',"DB_USER"=>'root',"DB_PASSWORD"=>'');
  
     $pdo = new DB($dbConfig);
     $db = $pdo->getDB();
@@ -43,7 +40,8 @@ if ( count($errors) > 0 ) {
     $values = array(":emailtype"=>$EmailType);
     
     if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) {
-        echo 'email Added';
+        
+        echo 'email has been Added';
     }  
     
 }
@@ -52,7 +50,7 @@ if ( count($errors) > 0 ) {
          <h3>Add Email type</h3>
         <form action="#" method="post">
             <label>email Type:</label> 
-            <input type="text" name="phonetype" value="<?php echo $emailType; ?>" placeholder="" />
+            <input type="text" name="emailtype" value="<?php echo $EmailType; ?>" placeholder="" />
             <input type="submit" value="Submit" />
         </form>
     </body>
