@@ -12,7 +12,7 @@
         
 $util = new Util();
 $validator = new Validator();
-$DatabaseConfig = new DatabaseConfig();
+$AddClass = new AddClass();
 
 $EmailType = filter_input(INPUT_POST, 'emailtype');
 
@@ -31,7 +31,8 @@ if ( count($errors) > 0 ) {
     }
 } else {
     
- $DatabaseConfig-> DatabaseConfig($EmailType);
+ $AddClass-> DatabaseConfig($EmailType);
+ 
 }
         
         ?>
@@ -41,6 +42,9 @@ if ( count($errors) > 0 ) {
             <input type="text" name="emailtype" value="<?php echo $EmailType; ?>" placeholder="" />
             <input type="submit" value="Submit" />
         </form>
+         <?PHP
+          $AddClass->Display();
+         ?>
     </body>
 </html>
 
