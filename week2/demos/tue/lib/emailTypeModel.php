@@ -12,30 +12,30 @@
  *
  * @author User
  */
-class PhoneTypeModel implements IModel {
+class emailTypeModel implements IModel {
     
-    private $phonetypeid;
-    private $phonetype;
+    private $emailtypeid;
+    private $emailtype;
     private $active;
     
-    function getPhonetypeid() {
-        return $this->phonetypeid;
+    function getemailtypeid() {
+        return $this->emailtypeid;
     }
 
-    function getPhonetype() {
-        return $this->phonetype;
+    function getemailtype() {
+        return $this->emailtype;
     }
 
     function getActive() {
         return $this->active;
     }
 
-    function setPhonetypeid($phonetypeid) {
-        $this->phonetypeid = $phonetypeid;
+    function setemailtypeid($emailtypeid) {
+        $this->emailtypeid = $emailtypeid;
     }
 
-    function setPhonetype($phonetype) {
-        $this->phonetype = $phonetype;
+    function setemailtype($emailtype) {
+        $this->emailtype = $emailtype;
     }
 
     function setActive($active) {
@@ -47,20 +47,20 @@ class PhoneTypeModel implements IModel {
      */
     
     public function reset() {
-        $this->setPhonetypeid('');
-        $this->setPhonetype('');
+        $this->setemailtypeid('');
+        $this->setemailtype('');
         $this->setActive('');
         return $this;
     }
     
     public function map(Array $values) {
         
-        if ( array_key_exists('phonetypeid', $values) ) {
-            $this->setPhonetypeid($values['phonetypeid']);
+        if ( array_key_exists('emailtypeid', $values) ) {
+            $this->setemailtypeid($values['emailtypeid']);
         }
         
-        if ( array_key_exists('phonetype', $values) ) {
-            $this->setPhonetype($values['phonetype']);
+        if ( array_key_exists('emailtype', $values) ) {
+            $this->setemailtype($values['emailtype']);
         }
         
         if ( array_key_exists('active', $values) ) {

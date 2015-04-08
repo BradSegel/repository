@@ -11,35 +11,35 @@
  *
  * @author User
  */
-class PhoneModel implements IModel {
+class emailModel implements IModel {
     
-    private $phoneid;
-    private $phone;
-    private $phonetypeid;
-    private $phonetype;
-    private $phonetypeactive;
+    private $emailid;
+    private $email;
+    private $emailtypeid;
+    private $emailtype;
+    private $emailtypeactive;
     private $logged;
     private $lastupdated;
     private $active;
     
-    function getPhoneid() {
-        return $this->phoneid;
+    function getemailid() {
+        return $this->emailid;
     }
 
-    function getPhone() {
-        return $this->phone;
+    function getemail() {
+        return $this->email;
     }
 
-    function getPhonetypeid() {
-        return $this->phonetypeid;
+    function getemailtypeid() {
+        return $this->emailtypeid;
     }
     
-     function getPhonetype() {
-        return $this->phonetype;
+     function getemailtype() {
+        return $this->emailtype;
     }
 
-    function getPhonetypeactive() {
-        return $this->phonetypeactive;
+    function getemailtypeactive() {
+        return $this->emailtypeactive;
     }
 
     function getLogged() {
@@ -54,24 +54,24 @@ class PhoneModel implements IModel {
         return $this->active;
     }
 
-    function setPhoneid($phoneid) {
-        $this->phoneid = $phoneid;
+    function setemailid($emailid) {
+        $this->emailid = $emailid;
     }
 
-    function setPhone($phone) {
-        $this->phone = $phone;
+    function setemail($email) {
+        $this->email = $email;
     }
 
-    function setPhonetypeid($phonetypeid) {
-        $this->phonetypeid = $phonetypeid;
+    function setemailtypeid($emailtypeid) {
+        $this->emailtypeid = $emailtypeid;
     }
 
-    function setPhonetype($phonetype) {
-        $this->phonetype = $phonetype;
+    function setemailtype($emailtype) {
+        $this->emailtype = $emailtype;
     }
 
-    function setPhonetypeactive($phonetypeactive) {
-        $this->phonetypeactive = $phonetypeactive;
+    function setemailtypeactive($emailtypeactive) {
+        $this->emailtypeactive = $emailtypeactive;
     }
     
     function setLogged($logged) {
@@ -90,11 +90,11 @@ class PhoneModel implements IModel {
     * When a class has to implement an interface those functions must be created in the class.
     */
     public function reset() {
-        $this->setPhoneid('');
-        $this->setPhone('');
-        $this->setPhonetypeid('');
-        $this->setPhonetype('');
-        $this->setPhonetypeactive('');
+        $this->setemailid('');
+        $this->setemail('');
+        $this->setemailtypeid('');
+        $this->setemailtype('');
+        $this->setemailtypeactive('');
         $this->setLogged('');
         $this->setLastupdated('');
         $this->setActive('');
@@ -105,24 +105,24 @@ class PhoneModel implements IModel {
    
     public function map(array $values) {
         
-        if ( array_key_exists('phoneid', $values) ) {
-            $this->setPhoneid($values['phoneid']);
+        if ( array_key_exists('emailid', $values) ) {
+            $this->setemailid($values['emailid']);
         }
         
-        if ( array_key_exists('phone', $values) ) {
-            $this->setPhone($values['phone']);
+        if ( array_key_exists('email', $values) ) {
+            $this->setemail($values['email']);
         }
         
-        if ( array_key_exists('phonetypeid', $values) ) {
-            $this->setPhonetypeid($values['phonetypeid']);
+        if ( array_key_exists('emailtypeid', $values) ) {
+            $this->setemailtypeid($values['emailtypeid']);
         }
         
-        if ( array_key_exists('phonetype', $values) ) {
-            $this->setPhonetype($values['phonetype']);
+        if ( array_key_exists('emailtype', $values) ) {
+            $this->setemailtype($values['emailtype']);
         }
         
-        if ( array_key_exists('phonetypeactive', $values) ) {
-            $this->setPhonetypeactive($values['phonetypeactive']);
+        if ( array_key_exists('emailtypeactive', $values) ) {
+            $this->setemailtypeactive($values['emailtypeactive']);
         }
         
         if ( array_key_exists('logged', $values) ) {

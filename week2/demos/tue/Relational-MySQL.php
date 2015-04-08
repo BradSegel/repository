@@ -7,22 +7,6 @@
     </head>
     <body>
         <?php
-        // put your code here
-        
-        /*
-         * Normally with relational MySQL your dealing with multipule databases that have a connection with another table.
-         * 
-         * In this example we have a phone table that has a phonetypeid that is linked to the phone type table.
-         * We can use the phonetypeid from the phone table to get a match from the phonetype table and get the phonetype.
-         * 
-         * phone->phonetypeid belongs to phonetype->phonetypeid
-         * 
-         * 
-         * if you need a review about joins this article is good
-         * 
-         * http://www.sitepoint.com/understanding-sql-joins-mysql-database/
-         * 
-         */
         
 
         $dbConfig = array(
@@ -34,30 +18,30 @@
         $pdo = new DB($dbConfig);
         $db = $pdo->getDB();
         
-        $stmt = $db->prepare("SELECT phoneid from phone where phone = :phone");  
-        $values = array(":phone"=>'555-444-3333');
+        $stmt = $db->prepare("SELECT emailid from email where email = :email");  
+        $values = array(":email"=>'brad@gmail.com');
         
         if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) {
-            echo '<p>Phone Already added</p>';
+            echo '<p>email Already added</p>';
             
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
              
-            // lets update the phone
-            $stmt = $db->prepare("UPDATE phone SET lastupdated = now() where phoneid = :phoneid");  
-            $values = array(":phoneid"=>$result['phoneid']);
+            // lets update the email
+            $stmt = $db->prepare("UPDATE email SET lastupdated = now() where emailid = :emailid");  
+            $values = array(":emailid"=>$result['vid']);
             if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) {
-                echo '<p>Phone Updated</p>';
+                echo '<p>email Updated</p>';
             }
             
             
         } else {
         
-            // lets add a phone
+            // lets add a email
             // now() = MySql timestamp function
-            $stmt = $db->prepare("INSERT INTO phone SET phone = :phone, phonetypeid = :phonetypeid, logged = now(), lastupdated = now()");  
-            $values = array(":phone"=>'555-444-3333',":phonetypeid"=>'2');
+            $stmt = $db->prepare("INSERT INTO email SET email = :email, emailtypeid = :emailtypeid, logged = now(), lastupdated = now()");  
+            $values = array(":email"=>'brad@gmail.com',":emailtypeid"=>'2');
             if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) {
-                echo '<p>Phone Added</p>';
+                echo '<p>email Added</p>';
             } 
 
         }
@@ -68,7 +52,7 @@
         /*
          * Selects see the data
          */
-        $stmt = $db->prepare("SELECT phone.phone, phonetype.phonetype, phone.logged, phone.lastupdated FROM phone LEFT JOIN phonetype on phone.phonetypeid = phonetype.phonetypeid");  
+        $stmt = $db->prepare("SELECT email.email, emailtype.emailtype, email.logged, email.lastupdated FROM email LEFT JOIN emailtype on email.emailtypeid = emailtype.emailtypeid");  
                 
         if ( $stmt->execute() && $stmt->rowCount() > 0 ) {
         
@@ -77,8 +61,8 @@
             echo '<table>';
             foreach ($results as $value) {
                 echo '<tr>';
-                echo '<td>', $value['phone'], '</td>';
-                echo '<td>', $value['phonetype'], '</td>';
+                echo '<td>', $value['email'], '</td>';
+                echo '<td>', $value['emailtype'], '</td>';
                 // we use the MySQL timestamp to format it in PHP
                 echo '<td>', date("F j, Y g:i(s) a", strtotime($value['logged']))  , '</td>';
                 echo '<td>', date("F j, Y g:i(s) a", strtotime($value['lastupdated'])) , '</td>';

@@ -17,7 +17,7 @@
         $pdo = new DB($dbConfig);
         $db = $pdo->getDB();
 
-        $phoneType = filter_input(INPUT_POST, 'phonetype');
+        $emailType = filter_input(INPUT_POST, 'emailtype');
         $active = filter_input(INPUT_POST, 'active');
         
         $util = new Util();
@@ -26,8 +26,8 @@
             if ( $util->isPostRequest() ) {
                 $validator = new Validator(); 
                 $errors = array();
-                if( !$validator->phoneTypeIsValid($phoneType) ) {
-                    $errors[] = 'Phone Type is invalid';
+                if( !$validator->emailTypeIsValid($emailType) ) {
+                    $errors[] = 'email Type is invalid';
                 } 
                 
                 if ( !$validator->activeIsValid($active) ) {
@@ -45,15 +45,15 @@
                     * Fax,Home,Moble,Pager,Work
                     */
                    
-                    $phoneTypeDAO = new PhoneTypeDAO($db);
+                    $emailTypeDAO = new emailTypeDAO($db);
                    
-                    $phonetypeModel = new PhoneTypeModel();
-                    $phonetypeModel->setActive($active);
-                    $phonetypeModel->setPhonetype($phoneType);
+                    $emailtypeModel = new emailTypeModel();
+                    $emailtypeModel->setActive($active);
+                    $emailtypeModel->setemailtype($emailType);
                     
                    // var_dump($phonetypeModel);
-                    if ( $phoneTypeDAO->save($phonetypeModel) ) {
-                        echo 'Phone Added';
+                    if ( $emailTypeDAO->save($emailtypeModel) ) {
+                        echo 'email Added';
                     }
                     
                                
@@ -66,10 +66,10 @@
         ?>
         
         
-         <h3>Add phone type</h3>
+         <h3>Add email type</h3>
         <form action="#" method="post">
-            <label>Phone Type:</label> 
-            <input type="text" name="phonetype" value="<?php echo $phoneType; ?>" placeholder="" />
+            <label>email Type:</label> 
+            <input type="text" name="emailtype" value="<?php echo $emailType; ?>" placeholder="" />
             <br /><br />
             <label>Active:</label>
             <input type="number" max="1" min="0" name="active" value="<?php echo $active; ?>" />
@@ -79,13 +79,13 @@
          
          
          <?php         
-             $stmt = $db->prepare("SELECT * FROM phonetype");
+             $stmt = $db->prepare("SELECT * FROM emailtype");
          
             if ( $stmt->execute() && $stmt->rowCount() > 0 ) {
                 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                  foreach ($results as $value) {
-                       echo '<p>',$value['phonetype'],'</p>';
+                       echo '<p>',$value['emailtype'],'</p>';
                    }
 
             } else {

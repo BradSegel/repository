@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of PhoneTypeDAO
+ * PhoneDAO
  * 
  * DAO = Data Access Object
  * 
@@ -12,7 +12,9 @@
  *
  * @author User
  */
-class PhoneTypeDAO implements IDAO {
+
+// *** NOTE this class is not complete and does not work
+class EmailDAO implements IDAO {
     
     private $DB = null;
 
@@ -31,9 +33,9 @@ class PhoneTypeDAO implements IDAO {
     public function idExisit($id) {
         
         $db = $this->getDB();
-        $stmt = $db->prepare("SELECT * FROM phonetype WHERE phonetypeid = :phonetypeid");
+        $stmt = $db->prepare("SELECT emailid FROM email WHERE emailid = :emailid");
          
-        if ( $stmt->execute(array(':phonetypeid' => $id)) && $stmt->rowCount() > 0 ) {
+        if ( $stmt->execute(array(':emailid' => $id)) && $stmt->rowCount() > 0 ) {
             return true;
         }
          return false;
@@ -41,14 +43,15 @@ class PhoneTypeDAO implements IDAO {
     
     public function getById($id) {
          
-         $model = new PhoneTypeModel(); // this creates a dependacy, how can we fix this
+         $model = new PhoneModel(); // this creates a dependacy, how can we fix this
          $db = $this->getDB();
          
-         $stmt = $db->prepare("SELECT * FROM phonetype WHERE phonetypeid = :phonetypeid");
+         $stmt = $db->prepare("SELECT email.emailid, email.email, email.emailtypeid, emailtype.emailtype, emailtype.active as emailtypeactive, email.logged, email.lastupdated, email.active"
+                 . " FROM email LEFT JOIN emailtype on email.emailtypeid = emailtype.emailtypeid WHERE emailid = :emailid");
          
-         if ( $stmt->execute(array(':phonetypeid' => $id)) && $stmt->rowCount() > 0 ) {
+         if ( $stmt->execute(array(':emailid' => $id)) && $stmt->rowCount() > 0 ) {
              $results = $stmt->fetch(PDO::FETCH_ASSOC);
-             $model->map($results);            
+             $model->map($results);
          }
          
          return $model;
@@ -59,16 +62,18 @@ class PhoneTypeDAO implements IDAO {
                  
          $db = $this->getDB();
          
-         $values = array( ":phonetype" => $model->getPhonetype(),
-                          ":active" => $model->getActive()
+         $values = array( ":email" => $model->getemail(),
+                          ":active" => $model->getActive(),
+                          ":emailtypeid" => $model->getemailtypeid(),
+             
                     );
          
                 
-         if ( $this->idExisit($model->getPhonetypeid()) ) {
-             $values[":phonetypeid"] = $model->getPhonetypeid();
-             $stmt = $db->prepare("UPDATE phonetype SET phonetype = :phonetype, active = :active WHERE phonetypeid = :phonetypeid");
+         if ( $this->idExisit($model->getPhoneid()) ) {
+             $values[":emailid"] = $model->getPhoneid();
+             $stmt = $db->prepare("UPDATE email SET email = :email, emailtypeid = :emailtypeid,  active = :active, lastupdated = now() WHERE emailid = :emailid");
          } else {             
-             $stmt = $db->prepare("INSERT INTO phonetype SET phonetype = :phonetype, active = :active");
+             $stmt = $db->prepare("INSERT INTO email SET email = :email, emailtypeid = :emailtypeid, active = :active, logged = now(), lastupdated = now()");
          }
          
           
@@ -83,9 +88,9 @@ class PhoneTypeDAO implements IDAO {
     public function delete($id) {
           
          $db = $this->getDB();         
-         $stmt = $db->prepare("Delete FROM phonetype WHERE phonetypeid = :phonetypeid");
+         $stmt = $db->prepare("Delete FROM email WHERE emailid = :emailid");
          
-         if ( $stmt->execute(array(':phonetypeid' => $id)) && $stmt->rowCount() > 0 ) {
+         if ( $stmt->execute(array(':emailid' => $id)) && $stmt->rowCount() > 0 ) {
              return true;
          }
          
@@ -98,13 +103,14 @@ class PhoneTypeDAO implements IDAO {
        
         $values = array();         
         $db = $this->getDB();               
-        $stmt = $db->prepare("SELECT * FROM phonetype");
+        $stmt = $db->prepare("SELECT email.emailid, email.email, email.emailtypeid, emailtype.emailtype, emailtype.active as emailtype.active, email.logged, email.lastupdated, email.active"
+                 . " FROM email LEFT JOIN emailtype on email.emailtypeid = emailtype.emailtypeid");
         
         if ( $stmt->execute() && $stmt->rowCount() > 0 ) {
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             foreach ($results as $value) {
-               $model = new PhoneTypeModel();
+               $model = new emailModel();
                $model->reset()->map($value);
                $values[] = $model;
             }

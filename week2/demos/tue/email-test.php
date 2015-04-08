@@ -18,15 +18,15 @@
         $db = $pdo->getDB();
         
         
-        $phone = filter_input(INPUT_POST, 'phone');
-        $phoneTypeid = filter_input(INPUT_POST, 'phonetypeid');
+        $email = filter_input(INPUT_POST, 'email');
+        $emailTypeid = filter_input(INPUT_POST, 'emailtypeid');
         $active = filter_input(INPUT_POST, 'active');
         
         
-         $phoneTypeDAO = new PhoneTypeDAO($db);
-         $phoneDAO = new PhoneDAO($db);
+         $emailTypeDAO = new emailTypeDAO($db);
+         $emailDAO = new emailDAO($db);
          
-         $phoneTypes = $phoneTypeDAO->getAllRows();
+         $emailTypes = $emailTypeDAO->getAllRows();
         
          $util = new Util();
          
@@ -34,16 +34,16 @@
                             
                $validator = new Validator(); 
                 $errors = array();
-                if( !$validator->phoneIsValid($phone) ) {
-                    $errors[] = 'Phone is invalid';
+                if( !$validator->emailIsValid($email) ) {
+                    $errors[] = 'email is invalid';
                 } 
                 
                 if ( !$validator->activeIsValid($active) ) {
                      $errors[] = 'Active is invalid';
                 }
                 
-                if ( empty($phoneTypeid) ) {
-                     $errors[] = 'Phone type is invalid';
+                if ( empty($emailTypeid) ) {
+                     $errors[] = 'email type is invalid';
                 }
                 
                 
@@ -55,15 +55,15 @@
                 } else {
                     
                     
-                    $phoneModel = new PhoneModel();
+                    $emailModel = new emailModel();
                     
-                    $phoneModel->map(filter_input_array(INPUT_POST));
+                    $emailModel->map(filter_input_array(INPUT_POST));
                     
-                   // var_dump($phonetypeModel);
-                    if ( $phoneDAO->save($phoneModel) ) {
-                        echo 'Phone Added';
+                   // var_dump($emailtypeModel);
+                    if ( $emailDAO->save($emailModel) ) {
+                        echo 'email Added';
                     } else {
-                        echo 'Phone not added';
+                        echo 'email not added';
                     }
                     
                 }
@@ -72,23 +72,23 @@
         ?>
         
         
-         <h3>Add phone</h3>
+         <h3>Add email</h3>
         <form action="#" method="post">
-            <label>Phone:</label>            
-            <input type="text" name="phone" value="<?php echo $phone; ?>" placeholder="" />
+            <label>email:</label>            
+            <input type="text" name="email" value="<?php echo $email; ?>" placeholder="" />
             <br /><br />
             <label>Active:</label>
             <input type="number" max="1" min="0" name="active" value="<?php echo $active; ?>" />
             
             <br /><br />
-            <label>Phone Type:</label>
-            <select name="phonetypeid">
+            <label>email Type:</label>
+            <select name="emailtypeid">
             <?php 
-                foreach ($phoneTypes as $value) {
-                    if ( $value->getPhonetypeid() == $phoneTypeid ) {
-                        echo '<option value="',$value->getPhonetypeid(),'" selected="selected">',$value->getPhonetype(),'</option>';  
+                foreach ($emailTypes as $value) {
+                    if ( $value->getemailtypeid() == $emailTypeid ) {
+                        echo '<option value="',$value->getemailtypeid(),'" selected="selected">',$value->getemailtype(),'</option>';  
                     } else {
-                        echo '<option value="',$value->getPhonetypeid(),'">',$value->getPhonetype(),'</option>';
+                        echo '<option value="',$value->getemailtypeid(),'">',$value->getemailtype(),'</option>';
                     }
                 }
             ?>
@@ -100,16 +100,16 @@
          
             <table border="1" cellpadding="5">
                 <tr>
-                    <th>Phone</th>
-                    <th>Phone Type</th>
+                    <th>email</th>
+                    <th>email Type</th>
                     <th>Last updated</th>
                     <th>Logged</th>
                     <th>Active</th>
                 </tr>
          <?php 
-            $phones = $phoneDAO->getAllRows(); 
+            $emails = $emailDAO->getAllRows(); 
             foreach ($phones as $value) {
-                echo '<tr><td>',$value->getPhone(),'</td><td>',$value->getPhonetype(),'</td><td>',date("F j, Y g:i(s) a", strtotime($value->getLastupdated())),'</td><td>',date("F j, Y g:i(s) a", strtotime($value->getLogged())),'</td>';
+                echo '<tr><td>',$value->getemail(),'</td><td>',$value->getemailtype(),'</td><td>',date("F j, Y g:i(s) a", strtotime($value->getLastupdated())),'</td><td>',date("F j, Y g:i(s) a", strtotime($value->getLogged())),'</td>';
                 echo  '<td>', ( $value->getActive() == 1 ? 'Yes' : 'No') ,'</td></tr>' ;
             }
 
