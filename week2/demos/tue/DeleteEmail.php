@@ -26,7 +26,7 @@ and open the template in the editor.
         
          $emailDAO = new emailDAO($db);
            $emailDAO->delete($emailid);
-       //delete($emailid);
+       //Deletin email
         ?>
         <a href="email-test.php">Back</a>
     </body>
