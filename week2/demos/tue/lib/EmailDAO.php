@@ -43,7 +43,7 @@ class EmailDAO implements IDAO {
     
     public function getById($id) {
          
-         $model = new PhoneModel(); // this creates a dependacy, how can we fix this
+         $model = new emailModelModel(); // this creates a dependacy, how can we fix this
          $db = $this->getDB();
          
          $stmt = $db->prepare("SELECT email.emailid, email.email, email.emailtypeid, emailtype.emailtype, emailtype.active as emailtypeactive, email.logged, email.lastupdated, email.active"
@@ -103,7 +103,7 @@ class EmailDAO implements IDAO {
        
         $values = array();         
         $db = $this->getDB();               
-        $stmt = $db->prepare("SELECT email.emailid, email.email, email.emailtypeid, emailtype.emailtype, emailtype.active as emailtype.active, email.logged, email.lastupdated, email.active"
+        $stmt = $db->prepare("SELECT email.emailid, email.email, email.emailtypeid, emailtype.emailtype, emailtype.active as emailtypeactive, email.logged, email.lastupdated, email.active"
                  . " FROM email LEFT JOIN emailtype on email.emailtypeid = emailtype.emailtypeid");
         
         if ( $stmt->execute() && $stmt->rowCount() > 0 ) {

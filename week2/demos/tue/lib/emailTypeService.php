@@ -17,8 +17,8 @@ class emailTypeService {
     private $_Util;
     private $_DB;
     private $_Validator;
-    private $_PhoneTypeDAO;
-    private $_PhonetypeModel;
+    private $_emailTypeDAO;
+    private $_emailtypeModel;
 
 
     public function __construct($db, $util, $validator, $emailTypeDAO, $emailtypeModel) {
@@ -26,7 +26,7 @@ class emailTypeService {
         $this->_Util = $util;
         $this->_Validator = $validator;
         $this->_emailTypeDAO = $emailTypeDAO;
-        $this->_PhoneTypeModel = $emailtypeModel;
+        $this->_emailTypeModel = $emailtypeModel;
     }
 
 
@@ -78,7 +78,7 @@ class emailTypeService {
     }
 
 
-    public function displayPhones() {        
+    public function displayemails() {        
        
         $stmt = $this->_DB->prepare("SELECT * FROM emailtype");
 

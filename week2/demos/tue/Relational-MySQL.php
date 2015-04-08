@@ -66,6 +66,7 @@
                 // we use the MySQL timestamp to format it in PHP
                 echo '<td>', date("F j, Y g:i(s) a", strtotime($value['logged']))  , '</td>';
                 echo '<td>', date("F j, Y g:i(s) a", strtotime($value['lastupdated'])) , '</td>';
+            
                 echo '</td>';
             }
              echo '</table>';

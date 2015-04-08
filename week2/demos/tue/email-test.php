@@ -108,9 +108,14 @@
                 </tr>
          <?php 
             $emails = $emailDAO->getAllRows(); 
-            foreach ($phones as $value) {
-                echo '<tr><td>',$value->getemail(),'</td><td>',$value->getemailtype(),'</td><td>',date("F j, Y g:i(s) a", strtotime($value->getLastupdated())),'</td><td>',date("F j, Y g:i(s) a", strtotime($value->getLogged())),'</td>';
-                echo  '<td>', ( $value->getActive() == 1 ? 'Yes' : 'No') ,'</td></tr>' ;
+            foreach ($emails as $value) {
+                echo '<tr>'
+                . '<td>',$value->getemail(),'</td>'
+                        . '<td>',$value->getemailtype(),'</td>'
+                        . '<td>',date("F j, Y g:i(s) a", strtotime($value->getLastupdated())),'</td>'
+                        . '<td>', date("F j, Y g:i(s) a", strtotime($value->getLogged())),'</td>';
+                echo  '<td>', ( $value->getActive() == 1 ? 'Yes' : 'No') ,'</td>';
+                         echo  '<td><a href="DeleteEmail.php?emailid=',$value->getemailid(),'">Delete</a></td>','</tr>' ;
             }
 
          ?>
