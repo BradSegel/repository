@@ -5,7 +5,8 @@
  *
  * @author GForti
  */
-
+namespace BradS\week2;
+use \PDO;
 
 class DB {
     

@@ -1,4 +1,8 @@
-<?php include './bootstrap.php'; ?>
+<?php 
+namespace BradS\week2;
+include './bootstrap.php'; 
+
+?>
 <!DOCTYPE html>
 <html>
     <head>

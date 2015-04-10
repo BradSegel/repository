@@ -11,6 +11,7 @@
  *
  * @author User
  */
+namespace BradS\week2;
 class emailTypeService {
    
     private $_errors = array();

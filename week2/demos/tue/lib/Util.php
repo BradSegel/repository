@@ -1,5 +1,6 @@
 <?php
-
+namespace BradS\week2;
+use \PDO;
 /**
  * Util - functions used to help with the over all application
  *

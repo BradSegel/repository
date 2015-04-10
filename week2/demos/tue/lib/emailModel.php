@@ -11,6 +11,8 @@
  *
  * @author User
  */
+namespace BradS\week2;
+
 class emailModel implements IModel {
     
     private $emailid;

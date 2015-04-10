@@ -12,7 +12,8 @@
  *
  * @author User
  */
-
+namespace BradS\week2;
+use \PDO;
 // *** NOTE this class is not complete and does not work
 class EmailDAO implements IDAO {
     

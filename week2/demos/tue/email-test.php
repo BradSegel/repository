@@ -1,5 +1,10 @@
-<?php include './bootstrap.php'; ?>
+<?php 
+namespace BradS\week2;
+include './bootstrap.php'; 
+
+?>
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -105,6 +110,7 @@
                     <th>Last updated</th>
                     <th>Logged</th>
                     <th>Active</th>
+                    <th>Delete</th>
                 </tr>
          <?php 
             $emails = $emailDAO->getAllRows(); 
@@ -115,7 +121,7 @@
                         . '<td>',date("F j, Y g:i(s) a", strtotime($value->getLastupdated())),'</td>'
                         . '<td>', date("F j, Y g:i(s) a", strtotime($value->getLogged())),'</td>';
                 echo  '<td>', ( $value->getActive() == 1 ? 'Yes' : 'No') ,'</td>';
-                         echo  '<td><a href="DeleteEmail.php?emailid=',$value->getemailid(),'">Delete</a></td>','<td><a href="UpdateEmail.php?emailid=',$value->getemailid(),'">Update</a></td>','</tr>' ;
+                         echo  '<td><a href="DeleteEmail.php?emailid=',$value->getemailid(),'">Delete</a></td></tr>' ;
             }
 
          ?>

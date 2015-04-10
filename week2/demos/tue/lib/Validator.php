@@ -1,5 +1,5 @@
 <?php
-
+namespace BradS\week2;
 /**
  * Validator Class
  * 

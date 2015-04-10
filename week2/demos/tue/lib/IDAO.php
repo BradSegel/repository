@@ -12,6 +12,7 @@
  * @author GForti
  *  
  */
+namespace BradS\week2;
 interface IDAO {
     
     /**

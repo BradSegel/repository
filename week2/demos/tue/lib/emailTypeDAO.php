@@ -12,6 +12,8 @@
  *
  * @author User
  */
+namespace BradS\week2;
+use \PDO;
 class emailTypeDAO implements IDAO {
     
     private $DB = null;
