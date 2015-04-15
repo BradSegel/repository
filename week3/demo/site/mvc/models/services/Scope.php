@@ -12,7 +12,7 @@
  * @author GForti
  */
 namespace App\models\services;
-
+use App\models\interfaces\IController;
 use App\models\interfaces\IService;
 
 class Scope implements IService {

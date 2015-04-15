@@ -190,6 +190,7 @@ use Exception;
             $_service = new EmailTypeService($_DAO, $_validator);
             return new \APP\controller\EmailtypeController($_service, $_model);
         });
+        
         // run application!
         $index->run($_scope);
     }

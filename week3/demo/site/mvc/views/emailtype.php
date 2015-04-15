@@ -13,6 +13,7 @@ and open the template in the editor.
         
         <?php
         // put your code here
+        //$scope = new Scope();
         
        
          if ( $scope->util->isPostRequest() ) {

@@ -7,7 +7,7 @@
  */
 
 /**
- * Description of PhoneTypeService
+ * Description of EmailTypeService
  *
  * @author User
  */
