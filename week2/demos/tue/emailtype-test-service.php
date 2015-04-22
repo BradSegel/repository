@@ -1,5 +1,6 @@
 <?php 
 namespace BradS\week2;
+use \PDO;
 include './bootstrap.php'; 
 ?>
 <!DOCTYPE html>

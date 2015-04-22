@@ -12,6 +12,7 @@
  * @author User
  */
 namespace BradS\week2;
+use \PDO;
 class emailTypeService {
    
     private $_errors = array();
