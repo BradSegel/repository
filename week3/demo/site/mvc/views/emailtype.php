@@ -78,6 +78,6 @@ and open the template in the editor.
          
          
          
-         ?>
+        ?><a href="index">Index<a>
     </body>
 </html>

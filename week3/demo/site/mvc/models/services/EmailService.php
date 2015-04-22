@@ -1,17 +1,4 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of EmailTypeService
- *
- * @author User
- */
-
 namespace App\models\services;
 
 
@@ -19,7 +6,7 @@ use App\models\interfaces\IDAO;
 use App\models\interfaces\IService;
 use App\models\interfaces\IModel;
 
-class EmailTypeService implements IService {
+class EmailService implements IService {
     
      protected $DAO;
      protected $validator;
@@ -42,8 +29,8 @@ class EmailTypeService implements IService {
          $this->DAO = $DAO;
      }
 
-    public function __construct( IDAO $EmailTypeDAO, $validator  ) {
-        $this->setDAO($EmailTypeDAO);
+    public function __construct( IDAO $EmailDAO, $validator  ) {
+        $this->setDAO($EmailDAO);
         $this->setValidator($validator);
     }
     
@@ -78,12 +65,12 @@ class EmailTypeService implements IService {
     
     public function validate( IModel $model ) {
         $errors = array();
-        if ( !$this->getValidator()->emailTypeIsValid($model->getEmailtype()) ) {
-            $errors[] = 'email Type is invalid';
+        if ( !$this->getValidator()->emailIsValid($model->getEmail()) ) {
+            $errors[] = 'email is invalid';
         }
                
         if ( !$this->getValidator()->activeIsValid($model->getActive()) ) {
-            $errors[] = 'email active is invalid';
+            $errors[] = 'email is invalid';
         }
        
         

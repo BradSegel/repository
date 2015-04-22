@@ -190,6 +190,15 @@ use Exception;
             $_service = new EmailTypeService($_DAO, $_validator);
             return new \APP\controller\EmailtypeController($_service, $_model);
         });
+        $index->addDIController('email', function(){
+             return new \APP\controller\IndexController();
+        })
+        ->addDIController('email', function() use ($_pdo,$_validator,$_log ) {
+            $_model = new EmailModel();
+            $_DAO = new EmailDAO($_pdo->getDB(), $_model, $_log);
+            $_service = new EmailService($_DAO, $_validator);
+            return new \APP\controller\EmailController($_service, $_model);
+        });
         
         // run application!
         $index->run($_scope);

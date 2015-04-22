@@ -33,6 +33,7 @@
  */
 
 namespace App\models\services;
+
 use App\models\interfaces\ILogging;
 use \PDO;
 use App\models\interfaces\IService;

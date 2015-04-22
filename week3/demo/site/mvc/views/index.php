@@ -5,15 +5,16 @@
         <title></title>
     </head>
     <body>
-        cool
+      
         <?php
         // put your code here
         
-        var_dump($scope->view);
+        //var_dump($scope->view);
         
         
         ?>
+         <a href="email">Email</a><br />
+        <a href="emailtype">Email Type</a>
         
-        <a href="Emailtype">Email Type</a>
     </body>
 </html>

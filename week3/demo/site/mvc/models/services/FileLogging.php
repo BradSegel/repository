@@ -14,6 +14,7 @@
 
 namespace App\models\services;
 
+
 use App\models\interfaces\ILogging;
 
 class FileLogging implements ILogging {

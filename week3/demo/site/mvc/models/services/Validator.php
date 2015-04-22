@@ -8,6 +8,7 @@
 
 namespace App\models\services;
 
+
 use App\models\interfaces\IService;
 
 class Validator implements IService {
