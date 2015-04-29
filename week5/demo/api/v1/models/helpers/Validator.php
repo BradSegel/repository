@@ -6,9 +6,9 @@
  * @author GForti
  */
 
-namespace App\models\services;
+namespace API\models\services;
 
-use App\models\interfaces\IService;
+use API\models\interfaces\IService;
 
 class Validator implements IService {
     
@@ -24,9 +24,7 @@ class Validator implements IService {
     public function emailIsValid($email) {
         return ( is_string($email) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) !== false );
     }
-     public function emailTypeIsValid($email) {
-        return ( is_string($email) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) !== false );
-    }
+    
     /**
      * A method to check if a phone number is valid.
      *

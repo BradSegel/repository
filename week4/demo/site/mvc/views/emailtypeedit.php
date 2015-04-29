@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -12,39 +7,32 @@ and open the template in the editor.
     <body>
         
         <?php
-        // put your code here
+            
         
-       
-         if ( $scope->util->isPostRequest() ) {
-             
-             if ( isset($scope->view['errors']) ) {
-                print_r($scope->view['errors']);
-             }
-             
-             if ( isset($scope->view['saved']) && $scope->view['saved'] ) {
-                  echo 'Email Added';
-             }
-             
-             if ( isset($scope->view['deleted']) && $scope->view['deleted'] ) {
-                  echo 'Email deleted';
-             }
-             
-         }
+        if ( isset($scope->view['updated']) ) {
+            if( $scope->view['updated'] ) {        
+                 echo 'Email Updated';
+            } else {
+                 echo 'Email NOT Updated';
+            }                 
+        }
         
          $emailType = $scope->view['model']->getEmailtype();
          $active = $scope->view['model']->getActive();
-        
+         $emailtypeid = $scope->view['model']->getEmailtypeid();
         ?>
         
         
-         <h3>Add email type</h3>
+         <h3>Edit Email type</h3>
         <form action="#" method="post">
             <label>Email Type:</label> 
             <input type="text" name="emailtype" value="<?php echo $emailType; ?>" placeholder="" />
             <input type="number" max="1" min="0" name="Active" value="<?php echo $active; ?>" />
-            <input type="hidden" name="action" value="create" />
+            <input type="hidden"  name="emailtypeid" value="<?php echo $emailtypeid; ?>" />
+            <input type="hidden" name="action" value="update" />
             <input type="submit" value="Submit" />
         </form>
+         
          <br />
          <br />
          
@@ -52,10 +40,11 @@ and open the template in the editor.
             <input type="hidden" name="action" value="add" />
             <input type="submit" value="ADD Page" /> 
         </form>
+         
+         
          <?php
          
-        
-          if ( count($scope->view['EmailTypes']) <= 0 ) {
+         if ( count($scope->view['EmailTypes']) <= 0 ) {
             echo '<p>No Data</p>';
         } else {
             
@@ -74,9 +63,7 @@ and open the template in the editor.
         }
          
          
-         
-         
-         
          ?>
+         
     </body>
 </html>

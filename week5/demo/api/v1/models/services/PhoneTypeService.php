@@ -1,24 +1,18 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of EmailTypeService
+ * Description of PhoneTypeService
  *
  * @author User
  */
 
-namespace App\models\services;
+namespace API\models\services;
 
-use App\models\interfaces\IDAO;
-use App\models\interfaces\IService;
-use App\models\interfaces\IModel;
+use API\models\interfaces\IDAO;
+use API\models\interfaces\IService;
+use API\models\interfaces\IModel;
 
-class EmailTypeService implements IService {
+class PhoneTypeService implements IService {
     
      protected $DAO;
      protected $validator;
@@ -49,8 +43,8 @@ class EmailTypeService implements IService {
          $this->DAO = $DAO;
      }
 
-    public function __construct( IDAO $EmailTypeDAO, IService $validator,IModel $model  ) {
-        $this->setDAO($EmailTypeDAO);
+    public function __construct( IDAO $PhoneTypeDAO, IService $validator,IModel $model  ) {
+        $this->setDAO($PhoneTypeDAO);
         $this->setValidator($validator);
         $this->setModel($model);
     }
@@ -90,12 +84,12 @@ class EmailTypeService implements IService {
     
     public function validate( IModel $model ) {
         $errors = array();
-        if ( !$this->getValidator()->emailTypeIsValid($model->getEmailtype()) ) {
-            $errors[] = 'Email Type is invalid';
+        if ( !$this->getValidator()->phoneTypeIsValid($model->getPhonetype()) ) {
+            $errors[] = 'Phone Type is invalid';
         }
                
         if ( !$this->getValidator()->activeIsValid($model->getActive()) ) {
-            $errors[] = 'Email active is invalid';
+            $errors[] = 'Phone active is invalid';
         }
        
         
@@ -103,7 +97,7 @@ class EmailTypeService implements IService {
     }
     
     
-    public function getNewEmailTypeModel() {
+    public function getNewPhoneTypeModel() {
         return clone $this->getModel();
     }
     

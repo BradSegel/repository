@@ -185,13 +185,13 @@ use Exception;
         $_scope->util = new Util();
         $_validator = new Validator();
         
-        $_EmailTypemodel = new EmailTypeModel();
+        $_emailTypemodel = new EmailTypeModel();
         
-        $_EmailTypeDAO = new EmailTypeDAO($_pdo->getDB(), $_emailTypemodel, $_log);
+        $_emailTypeDAO = new EmailTypeDAO($_pdo->getDB(), $_emailTypemodel, $_log);
                 
         $_emailTypeService = new EmailTypeService($_emailTypeDAO, $_validator, $_emailTypemodel );
         
-       
+        $_emailservice = new EmailService();
         
         //http://php.net/manual/en/functions.anonymous.php
 
@@ -201,7 +201,9 @@ use Exception;
         ->addDIController('emailtype', function() use ($_emailTypeService ) { 
             return new \APP\controller\EmailtypeController($_emailTypeService);
         })
-        
+        ->addDIController('email', function() use ($_emailservice ) { 
+            return new \APP\controller\EmailController($_emailservice);
+        })
         
         ;
         // run application!
