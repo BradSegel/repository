@@ -32,6 +32,8 @@ class EmailDAO extends BaseDAO implements IDAO {
          return false;
     }
     
+  
+    
     public function read($id) {
          
          $model = clone $this->getModel();
@@ -78,6 +80,7 @@ class EmailDAO extends BaseDAO implements IDAO {
          $binds = array( ":email" => $model->getEmail(),
                           ":active" => $model->getActive(),
                           ":emailid" => $model->getEmailid()
+                
                     );
          
                 
