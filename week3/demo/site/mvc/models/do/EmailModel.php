@@ -11,7 +11,9 @@ class EmailModel extends BaseModel {
     function getEmailid() {
         return $this->emailid;
     }
-
+    function getEmailType() {
+        return $this->emailType;
+    }
     function getEmail() {
         return $this->email;
     }

@@ -42,8 +42,22 @@
             <input type="hidden" name="action" value="create" />
             <input type="submit" value="Submit" />
         </form>
-         <br />
-         <br />
+                  <br /><br />
+            <label>email Type:</label>
+            <select name="emailtypeid">
+            <?php 
+                foreach ($emailTypes as $value) {
+                    if ( $value->getemailtypeid() == $emailTypeid ) {
+                        echo '<option value="',$value->getemailtypeid(),'" selected="selected">',$value->getemailtype(),'</option>';  
+                    } else {
+                        echo '<option value="',$value->getemailtypeid(),'">',$value->getemailtype(),'</option>';
+                    }
+                }
+            ?>
+            </select>
+            
+             <br /><br />
+            <input type="submit" value="Submit" />
          
         <form action="#" method="post">
             <input type="hidden" name="action" value="add" />
@@ -62,6 +76,7 @@
                 echo '<tr>';
                 echo '<td>', $value->getEmail(),'</td>';
                 echo '<td>', ( $value->getActive() == 1 ? 'Yes' : 'No') ,'</td>';
+                echo '<td>', $value->getemailtype() ,'</td>';
                 echo '<td><form action="#" method="post"><input type="hidden"  name="emailid" value="',$value->getEmailid(),'" /><input type="hidden" name="action" value="edit" /><input type="submit" value="EDIT" /> </form></td>';
                 echo '<td><form action="#" method="post"><input type="hidden"  name="emailid" value="',$value->getEmailid(),'" /><input type="hidden" name="action" value="delete" /><input type="submit" value="DELETE" /> </form></td>';
                 echo '</tr>' ;
