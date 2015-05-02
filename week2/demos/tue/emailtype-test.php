@@ -89,7 +89,11 @@ include './bootstrap.php';
                 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                  foreach ($results as $value) {
-                       echo '<p>',$value['emailtype'],'</p>';
+                     echo '<tr>';
+                       echo '<td>',$value['emailtype'],'</td>';
+                       echo '<td><form action="#" method="post"><input type="hidden"  name="emailtypeid" value="',$value->getEmailtypeid(),'" /><input type="hidden" name="action" value="edit" /><input type="submit" value="EDIT" /> </form></td>';
+                       echo  '<td><a href="DeleteEmail.php?emailtypeid=',$value->getemailtypeid(),'">Delete</a></td>';
+                       echo '</tr>';
                    }
 
             } else {
