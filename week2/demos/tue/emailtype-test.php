@@ -91,7 +91,7 @@ include './bootstrap.php';
                  foreach ($results as $value) {
                      echo '<tr>';
                        echo '<td>',$value['emailtype'],'</td>';
-                       echo '<td><form action="#" method="post"><input type="hidden"  name="emailtypeid" value="',$value->getEmailtypeid(),'" /><input type="hidden" name="action" value="edit" /><input type="submit" value="EDIT" /> </form></td>';
+                    echo '<td><form action="#" method="post"><input type="hidden"  name="emailtypeid" value="',$value->getEmailtypeid(),'" /><input type="hidden" name="action" value="edit" /><input type="submit" value="EDIT" /> </form></td>';
                        echo  '<td><a href="DeleteEmail.php?emailtypeid=',$value->getemailtypeid(),'">Delete</a></td>';
                        echo '</tr>';
                    }
