@@ -20,9 +20,9 @@ use App\models\interfaces\IModel;
 
 class EmailController extends BaseController implements IController {
        
-    public function __construct( IService $EmailService, IModel $model  ) {                
+    public function __construct( IService $EmailService ) {                
         $this->service = $EmailService;     
-        $this->data['model'] = $model;
+       $this->data['model'] = $this->service->getNewEmailModel();
     }
 
 
@@ -58,6 +58,7 @@ class EmailController extends BaseController implements IController {
                        
         }
         $this->data['Emails'] = $this->service->getAllRows();        
+        $this->data['EmailTypes'] = $this->service->getAllEmailTypes();        
         
         $scope->view = $this->data;
         return $this->view($viewPage,$scope);

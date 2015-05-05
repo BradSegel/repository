@@ -181,23 +181,28 @@ use Exception;
         $_validator = new Validator();
         //http://php.net/manual/en/functions.anonymous.php
 
+         $_EmailTypemodel = new EmailTypeModel();
+            $_EmailTypeDAO = new EmailTypeDAO($_pdo->getDB(), $_EmailTypemodel, $_log);
+            $_EmailTypeservice = new EmailTypeService($_EmailTypeDAO, $_validator, $_EmailTypemodel);
+        
+            
+             $_Emailmodel = new EmailModel();
+            $_EmailDAO = new EmailDAO($_pdo->getDB(), $_Emailmodel, $_log);
+            $_Emailservice = new EmailService($_EmailDAO, $_validator, $_Emailmodel, $_EmailTypeservice);
+        
         $index->addDIController('index', function() {            
             return new \APP\controller\IndexController();
         })
-        ->addDIController('emailtype', function() use ($_pdo,$_validator,$_log ) {
-            $_model = new EmailTypeModel();
-            $_DAO = new EmailTypeDAO($_pdo->getDB(), $_model, $_log);
-            $_service = new EmailTypeService($_DAO, $_validator);
-            return new \APP\controller\EmailtypeController($_service, $_model);
+        ->addDIController('emailtype', function() use ($_EmailTypeservice ) {
+         
+            return new \APP\controller\EmailtypeController( $_EmailTypeservice);
         });
         $index->addDIController('email', function(){
              return new \APP\controller\IndexController();
         })
-        ->addDIController('email', function() use ($_pdo,$_validator,$_log ) {
-            $_model = new EmailModel();
-            $_DAO = new EmailDAO($_pdo->getDB(), $_model, $_log);
-            $_service = new EmailService($_DAO, $_validator);
-            return new \APP\controller\EmailController($_service, $_model);
+        ->addDIController('email', function() use ($_Emailservice ) {
+           
+            return new \APP\controller\EmailController($_Emailservice);
         });
         
         // run application!

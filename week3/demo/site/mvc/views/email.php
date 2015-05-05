@@ -46,7 +46,7 @@
             <label>email Type:</label>
             <select name="emailtypeid">
             <?php 
-                foreach ($emailTypes as $value) {
+                foreach ($scope->view['EmailTypes'] as $value) {
                     if ( $value->getemailtypeid() == $emailTypeid ) {
                         echo '<option value="',$value->getemailtypeid(),'" selected="selected">',$value->getemailtype(),'</option>';  
                     } else {
@@ -71,7 +71,7 @@
         } else {
             
             
-             echo '<table border="1" cellpadding="5"><tr><th>Email</th><th>Active</th><th></th><th></th></tr>';
+             echo '<table border="1" cellpadding="5"><tr><th>Email</th><th>Active</th><th>Email type</th><th>edit</th><th>delete</th></tr>';
              foreach ($scope->view['Emails'] as $value) {
                 echo '<tr>';
                 echo '<td>', $value->getEmail(),'</td>';

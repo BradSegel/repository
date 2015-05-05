@@ -21,9 +21,9 @@ use App\models\interfaces\IModel;
 
 class EmailtypeController extends BaseController implements IController {
        
-    public function __construct( IService $EmailTypeService, IModel $model  ) {                
+    public function __construct( IService $EmailTypeService  ) {                
         $this->service = $EmailTypeService;     
-        $this->data['model'] = $model;
+        $this->data['model'] = $this->service->getNewEmailTypeModel();
     }
 
 

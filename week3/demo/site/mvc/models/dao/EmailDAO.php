@@ -57,6 +57,7 @@ class EmailDAO extends BaseDAO implements IDAO {
          
          $binds = array( ":email" => $model->getEmail(),
                           ":active" => $model->getActive()
+                 
                     );
                          
          if ( !$this->idExisit($model->getEmailid()) ) {

@@ -23,7 +23,17 @@ class EmailTypeService implements IService {
     
      protected $DAO;
      protected $validator;
+     protected $model;
      
+     function getModel() {
+         return $this->model;
+     }
+
+     function setModel($model) {
+         $this->model = $model;
+     }
+
+          
      function getValidator() {
          return $this->validator;
      }
@@ -42,9 +52,10 @@ class EmailTypeService implements IService {
          $this->DAO = $DAO;
      }
 
-    public function __construct( IDAO $EmailTypeDAO, $validator  ) {
+    public function __construct( IDAO $EmailTypeDAO, $validator, IModel $model ) {
         $this->setDAO($EmailTypeDAO);
         $this->setValidator($validator);
+        $this->setModel($model);
     }
     
     
@@ -89,7 +100,9 @@ class EmailTypeService implements IService {
         
         return $errors;
     }
-    
+        public function getNewEmailTypeModel() {
+        return clone $this->getModel();
+    }
     
     
 }
