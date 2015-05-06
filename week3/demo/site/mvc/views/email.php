@@ -1,5 +1,4 @@
-
-
+<?php namespace App\models\services; ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -11,7 +10,6 @@
         // put your code here
         //$scope = new Scope();
         
-       
          if ( $scope->util->isPostRequest() ) {
              
              if ( isset($scope->view['errors']) ) {
@@ -30,7 +28,7 @@
         
          $email = $scope->view['model']->getEmail();
          $active = $scope->view['model']->getActive();
-        
+         $emailTypeid = $scope->view['model']->getEmailTypeid();
         ?>
         
         

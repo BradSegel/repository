@@ -37,6 +37,7 @@ class EmailController extends BaseController implements IController {
                 $this->data['model']->map($scope->util->getPostValues());
                 $this->data["errors"] = $this->service->validate($this->data['model']);
                 $this->data["saved"] = $this->service->create($this->data['model']);
+              
             }
             
             if ( $scope->util->getAction() == 'update'  ) {

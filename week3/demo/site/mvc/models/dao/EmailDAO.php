@@ -67,9 +67,14 @@ class EmailDAO extends BaseDAO implements IDAO {
              
              if ( $stmt->execute($binds) && $stmt->rowCount() > 0 ) {
                 return true;
+              
              }
-         }
-                  
+             else{
+                 var_dump($db->errorInfo());
+             }
+             }
+         
+               
          
          return false;
     }
