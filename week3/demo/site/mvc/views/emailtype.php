@@ -61,7 +61,7 @@ and open the template in the editor.
         } else {
             
             
-             echo '<table border="1" cellpadding="5"><tr><th>Email Type</th><th>Active</th><th>EDIT</th><th>DELETE</th></tr>';
+             echo '<table border="1" cellpadding="5"><tr><th>Email Type</th><th>EDIT</th><th>DELETE</th></tr>';
              foreach ($scope->view['EmailTypes'] as $value) {
                 echo '<tr>';
                 echo '<td>', $value->getEmailtype(),'</td>';
