@@ -39,7 +39,7 @@
             <input type="number" max="1" min="0" name="Active" value="<?php echo $active; ?>" />
             <input type="hidden" name="action" value="create" />
             <input type="submit" value="Submit" />
-        </form>
+        
                   <br /><br />
             <label>email Type:</label>
             <select name="emailtypeid">
@@ -56,7 +56,7 @@
             
              <br /><br />
             
-         
+         </form>
         <form action="#" method="post">
             <input type="hidden" name="action" value="add" />
             
@@ -87,6 +87,6 @@
          
          
          
-        ?><a href="index">Index<a>
+        ?><a href="index">Index<a></form>
     </body>
 </html>

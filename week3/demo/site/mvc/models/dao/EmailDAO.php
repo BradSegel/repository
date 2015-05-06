@@ -70,7 +70,7 @@ class EmailDAO extends BaseDAO implements IDAO {
               
              }
              else{
-                 var_dump($db->errorInfo());
+                // var_dump($db->errorInfo());
              }
              }
          
