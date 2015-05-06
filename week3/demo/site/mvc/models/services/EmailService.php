@@ -13,6 +13,7 @@ class EmailService implements IService {
      
      protected $model;
      protected $emailTypeService;
+     
      function getModel() {
          return $this->model;
      }
@@ -51,7 +52,7 @@ class EmailService implements IService {
         $this->setDAO($EmailDAO);
         $this->setValidator($validator);
         $this->setModel($model);
-        $this->setEmailTypeService($emailTypeService);
+        $this->setEmailTypeService($EmailTypeService);
     }
     
     

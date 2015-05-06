@@ -40,7 +40,8 @@ class EmailDAO extends BaseDAO implements IDAO {
          
          $db = $this->getDB();
          
-         $stmt = $db->prepare("SELECT * FROM email WHERE emailid = :emailid");
+         $stmt = $db->prepare("email.emailid, email.email, email.emailtypeid, emailtype.emailtype, emailtype.active as emailtypeactive, email.logged, email.lastupdated, email.active"
+                 . " FROM phone LEFT JOIN emailtype on email.emailtypeid = emailtype.emailtypeid WHERE emailid = :emailid");
          
          if ( $stmt->execute(array(':emailid' => $id)) && $stmt->rowCount() > 0 ) {
              $results = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -56,13 +57,13 @@ class EmailDAO extends BaseDAO implements IDAO {
          $db = $this->getDB();
          
          $binds = array( ":email" => $model->getEmail(),
-                          ":active" => $model->getActive()
-                 
+                          ":active" => $model->getActive(),
+                 ":emailtypeid" => $model->getEmailTypeid()
                     );
                          
          if ( !$this->idExisit($model->getEmailid()) ) {
              
-             $stmt = $db->prepare("INSERT INTO email SET email = :email, active = :active");
+             $stmt = $db->prepare("INSERT INTO email SET email = :email, active = :active, emailtypeid = :emailtypeid, active = :active, logged = now(), lastupdated = now()");
              
              if ( $stmt->execute($binds) && $stmt->rowCount() > 0 ) {
                 return true;
@@ -99,6 +100,22 @@ class EmailDAO extends BaseDAO implements IDAO {
          } 
          
          return false;
+    }
+    
+     public function getById($id) {
+         
+         $model = new emailModelModel(); // this creates a dependacy, how can we fix this
+         $db = $this->getDB();
+         
+         $stmt = $db->prepare("SELECT email.emailid, email.email, email.emailtypeid, emailtype.emailtype, emailtype.active as emailtypeactive, email.logged, email.lastupdated, email.active"
+                 . " FROM email LEFT JOIN emailtype on email.emailtypeid = emailtype.emailtypeid WHERE emailid = :emailid");
+         
+         if ( $stmt->execute(array(':emailid' => $id)) && $stmt->rowCount() > 0 ) {
+             $results = $stmt->fetch(PDO::FETCH_ASSOC);
+             $model->map($results);
+         }
+         
+         return $model;
     }
     
     public function delete($id) {

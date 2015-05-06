@@ -48,7 +48,7 @@
             <?php 
                 foreach ($scope->view['EmailTypes'] as $value) {
                     if ( $value->getemailtypeid() == $emailTypeid ) {
-                        echo '<option value="',$value->getemailtypeid(),'" selected="selected">',$value->getemailtype(),'</option>';  
+                        echo '<option value="',$value->gettmailtypeid(),'" selected="selected">',$value->getemailtype(),'</option>';  
                     } else {
                         echo '<option value="',$value->getemailtypeid(),'">',$value->getemailtype(),'</option>';
                     }
@@ -76,7 +76,7 @@
                 echo '<tr>';
                 echo '<td>', $value->getEmail(),'</td>';
                 echo '<td>', ( $value->getActive() == 1 ? 'Yes' : 'No') ,'</td>';
-                echo '<td>', $value->getemailtype() ,'</td>';
+                echo '<td>', $value->getEmailType() ,'</td>';
                 echo '<td><form action="#" method="post"><input type="hidden"  name="emailid" value="',$value->getEmailid(),'" /><input type="hidden" name="action" value="edit" /><input type="submit" value="EDIT" /> </form></td>';
                 echo '<td><form action="#" method="post"><input type="hidden"  name="emailid" value="',$value->getEmailid(),'" /><input type="hidden" name="action" value="delete" /><input type="submit" value="DELETE" /> </form></td>';
                 echo '</tr>' ;
