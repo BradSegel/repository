@@ -57,11 +57,11 @@
             </select>
             
              <br /><br />
-            <input type="submit" value="Submit" />
+            
          
         <form action="#" method="post">
             <input type="hidden" name="action" value="add" />
-            <input type="submit" value="ADD Page" /> 
+            
         </form>
          <?php
          
