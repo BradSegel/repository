@@ -20,7 +20,7 @@ include './bootstrap.php';
 
         $pdo = new DB($dbConfig);
         $db = $pdo->getDB();
-
+        $emailTypeDAO = new emailTypeDAO($db);
         $emailType = filter_input(INPUT_POST, 'emailtype');
         $active = filter_input(INPUT_POST, 'active');
         
@@ -81,24 +81,28 @@ include './bootstrap.php';
             <input type="submit" value="Submit" />
         </form>
          
-         
+         <table border="1" cellpadding="5">
+                <tr>
+                   
+                    <th>email Type</th>
+                   
+                    <th>Delete</th>
+                    <th>Edit</th>
+                </tr>
          <?php         
              $stmt = $db->prepare("SELECT * FROM emailtype");
          
-            if ( $stmt->execute() && $stmt->rowCount() > 0 ) {
-                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                 foreach ($results as $value) {
-                     echo '<tr>';
-                       echo '<td>',$value['emailtype'],'</td>';
-                    echo '<td><form action="#" method="post"><input type="hidden"  name="emailtypeid" value="',$value->getEmailtypeid(),'" /><input type="hidden" name="action" value="edit" /><input type="submit" value="EDIT" /> </form></td>';
-                       echo  '<td><a href="DeleteEmail.php?emailtypeid=',$value->getemailtypeid(),'">Delete</a></td>';
-                       echo '</tr>';
-                   }
-
-            } else {
-                echo '<p>No Data</p>';
+           
+               
+ $emailtypes = $emailTypeDAO->getAllRows();  
+            foreach ($emailtypes as $value) {
+                echo '<tr>'
+                        . '<td>',$value->getemailtype(),'</td>';
+                         echo  '<td><a href="DeleteEmailType.php?emailid=',$value->getemailtypeid(),'">Delete</a></td>'
+                                 . '<td><a href="UpdateEmailType.php?emailid=',$value->getemailtypeid(),'">Update</a></td>'
+                                 . '</tr>' ;
             }
+            
          ?>
          
          
