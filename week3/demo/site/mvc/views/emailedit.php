@@ -31,6 +31,19 @@
             <input type="hidden"  name="emailid" value="<?php echo $emailid; ?>" />
             <input type="hidden" name="action" value="update" />
             <input type="submit" value="Submit" />
+        
+            
+             <label>email Type:</label>
+            <select name="emailtypeid">
+            <?php 
+                foreach ($scope->view['EmailTypes'] as $value) {
+                    if ( $value->getemailtypeid() == $emailTypeid ) {
+                        echo '<option value="',$value->getemailtypeid(),'" selected="selected">',$value->getemailtype(),'</option>';  
+                    } else {
+                        echo '<option value="',$value->getemailtypeid(),'">',$value->getemailtype(),'</option>';
+                    }
+                }
+            ?>
         </form>
          
          <br />
