@@ -62,11 +62,12 @@
         } else {
             
             
-             echo '<table border="1" cellpadding="5"><tr><th>Email</th><th>Active</th><th></th><th></th></tr>';
+             echo '<table border="1" cellpadding="5"><tr><th>Email</th><th>Active</th><th>email type</th><th></th></tr>';
              foreach ($scope->view['Emails'] as $value) {
                 echo '<tr>';
                 echo '<td>', $value->getEmail(),'</td>';
                 echo '<td>', ( $value->getActive() == 1 ? 'Yes' : 'No') ,'</td>';
+                echo '<td>', $value->getEmailType() ,'</td>';
                 echo '<td><form action="#" method="post"><input type="hidden"  name="emailid" value="',$value->getEmailid(),'" /><input type="hidden" name="action" value="edit" /><input type="submit" value="EDIT" /> </form></td>';
                 echo '<td><form action="#" method="post"><input type="hidden"  name="emailid" value="',$value->getEmailid(),'" /><input type="hidden" name="action" value="delete" /><input type="submit" value="DELETE" /> </form></td>';
                 echo '</tr>' ;
