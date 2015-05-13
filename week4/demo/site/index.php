@@ -185,11 +185,23 @@ use Exception;
         $_scope->util = new Util();
         $_validator = new Validator();
         
-        $_EmailTypemodel = new EmailTypeModel();
+         $_EmailTypemodel = new EmailTypemodel();
         
-        $_EmailTypeDAO = new EmailTypeDAO($_pdo->getDB(), $_emailTypemodel, $_log);
+        $_EmailTypeDAO = new EmailTypeDAO($_pdo->getDB(), $_EmailTypemodel, $_log);
                 
-        $_emailTypeService = new EmailTypeService($_emailTypeDAO, $_validator, $_emailTypemodel );
+        $_emailTypeService = new EmailTypeService($_EmailTypeDAO, $_validator, $_EmailTypemodel );
+        
+        
+       /* $_Emailmodel = new Emailmodel();
+        
+        $_EmailDAO = new EmailDAO($_pdo->getDB(), $_Emailmodel, $_log);
+                
+        $_emailService = new EmailService($_EmailDAO, $_validator, $_Emailmodel );
+        
+        */
+
+        
+        
         
        
         
@@ -201,7 +213,11 @@ use Exception;
         ->addDIController('emailtype', function() use ($_emailTypeService ) { 
             return new \APP\controller\EmailtypeController($_emailTypeService);
         })
-        
+        /* ->addDIController('email', function() use ($_emailService ) { 
+            return new \APP\controller\EmailtypeController($_emailService);
+        })
+         * 
+         */
         
         ;
         // run application!

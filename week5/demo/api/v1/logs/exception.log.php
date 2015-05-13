@@ -4,3 +4,4 @@
 [553fa75f9039c]	[exception]	[04-28-2015 5:29pm]	New Phone Type Not Created
 [553fa7ac9c157]	[exception]	[04-28-2015 5:30pm]	7 ID Phone Type Not Deleted
 [553fa7b2347e3]	[exception]	[04-28-2015 5:30pm]	7 ID does not exist
+[5552a1d2c14c4]	[exception]	[05-13-2015 2:58am]	34 ID does not exist

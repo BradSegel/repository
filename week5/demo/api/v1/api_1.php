@@ -55,12 +55,13 @@ final class Index {
     $_validator = new Validator();
 
     $_emailTypemodel = new EmailTypeModel();
+    $_emailModel = new EmailModel();
 
     $_emailTypeDAO = new EmailTypeDAO($_pdo->getDB(), $_emailTypemodel, $_log);
+    $_emailDAO = new EmailDAO($_pdo->getDB(), $_emailModel, $_log);
 
     $_emailTypeService = new EmailTypeService($_emailTypeDAO, $_validator, $_emailTypemodel );
-
-        
+    $_emailService = new EmailService($_emailDAO, $_emailTypeService, $_validator, $_emailModel );        
      
      
     /*
@@ -75,6 +76,9 @@ final class Index {
 
     $_restServer->addDIResourceRequest('emailtypes', function() use ($_emailTypeService ) {       
         return new EmailtypeRequest($_emailTypeService);
+    })    
+    ->addDIResourceRequest('emails', function() use ($_emailService ) {       
+        return new EmailRequest($_emailService);
     })
     ;
     // run application!
