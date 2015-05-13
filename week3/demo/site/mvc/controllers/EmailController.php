@@ -30,7 +30,7 @@ class EmailController extends BaseController implements IController {
                 
         $this->data['model']->reset();
         $viewPage = 'email';
-        
+        //var_dump($scope->util->getAction());
         if ( $scope->util->isPostRequest() ) {
             
             if ( $scope->util->getAction() == 'create' ) {

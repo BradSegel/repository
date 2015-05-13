@@ -20,11 +20,13 @@
          $email = $scope->view['model']->getEmail();
          $active = $scope->view['model']->getActive();
          $emailid = $scope->view['model']->getEmailid();
+         $emailTypeid = $scope->view['model']->getEmailTypeid();
+         
         ?>
         
         
          <h3>Edit Email</h3>
-        <form action="#" method="post">
+         <form action="#" method="post">
             <label>Email:</label> 
             <input type="text" name="email" value="<?php echo $email; ?>" placeholder="" />
             <input type="number" max="1" min="0" name="Active" value="<?php echo $active; ?>" />
@@ -43,15 +45,16 @@
                         echo '<option value="',$value->getemailtypeid(),'">',$value->getemailtype(),'</option>';
                     }
                 }
-            ?>
+                ?></select>
         </form>
          
          <br />
          <br />
          
         <form action="#" method="post">
-            <input type="hidden" name="action" value="add" />
-            <input type="submit" value="ADD Page" /> 
+           <input type="hidden" name="action" value="add" />
+            <input type="submit" value="add" />
+           
         </form>
          
          

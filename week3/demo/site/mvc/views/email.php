@@ -59,7 +59,7 @@
          </form>
         <form action="#" method="post">
             <input type="hidden" name="action" value="add" />
-            
+            <input type="submit" value="add" />
         </form>
          <?php
          
