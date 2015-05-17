@@ -66,7 +66,7 @@ final class Index {
 
     $_emailDAO = new EmailDAO($_pdo->getDB(), $_emailmodel, $_log);
 
-    $_emailService = new EmailService($_emailDAO, $_validator, $_emailmodel );
+   $_emailService = new EmailService($_emailDAO, $_emailTypeService, $_validator, $_emailmodel ); 
      
      
     /*
