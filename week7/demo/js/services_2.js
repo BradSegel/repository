@@ -2,27 +2,27 @@
   
 var appServices = angular.module('appServices', []);
  
-appServices.factory('phoneTypesProvider', ['$http', 'config', function($http, config) {
+appServices.factory('emailTypesProvider', ['$http', 'config', function($http, config) {
 
-    var url = config.endpoints.phonetypes;
-    var model = config.models.phonetype;
+    var url = config.endpoints.emailtypes;
+    var model = config.models.emailtype;
     
     return {
-        "getPhoneTypes": function () {
+        "getEmailTypes": function () {
             return $http.get(url);
         },
-        "postPhoneType": function (phonetype, active) {
-            model.phonetype = phonetype;
+        "postEmailType": function (emailtype, active) {
+            model.emailtype = emailtype;
             model.active = active;
             return $http.post(url, model);
         },
-        "deletePhoneType" : function (phonetypeid) {
-            var _url = url + phonetypeid;
+        "deleteEmailType" : function (emailtypeid) {
+            var _url = url + emailtypeid;
             return $http.delete(_url);
         },
-        "updatePhoneType" : function (phonetypeid, phonetype, active) {  
-            var _url = url + phonetypeid;
-            model.phonetype = phonetype;
+        "updateEmailType" : function (emailtypeid, emailtype, active) {  
+            var _url = url + emailtypeid;
+            model.emailtype = emailtype;
             model.active = active;
             return $http.put(_url, model);
         }
@@ -30,29 +30,29 @@ appServices.factory('phoneTypesProvider', ['$http', 'config', function($http, co
 }]);
 
 
-appServices.factory('phonesProvider', ['$http', 'config', function($http, config) {
+appServices.factory('emailsProvider', ['$http', 'config', function($http, config) {
 
-    var url = config.endpoints.phones;
-    var model = config.models.phone;
+    var url = config.endpoints.emails;
+    var model = config.models.email;
     
     return {
-        "getPhones": function () {
+        "getEmails": function () {
             return $http.get(url);
         },
-        "postPhone": function (phone, phonetypeid, active) {
-            model.phone = phone;
-            model.phonetypeid = phonetypeid;
+        "postEmail": function (email, emailtypeid, active) {
+            model.email = email;
+            model.emailtypeid = emailtypeid;
             model.active = active;
             return $http.post(url, model);
         },
-        "deletePhone" : function (phoneid) {
-            var _url = url + phoneid;
+        "deleteEmail" : function (emailid) {
+            var _url = url + emailid;
             return $http.delete(_url);
         },
-         "updatePhone" : function (phoneid, phonetype, phonetypeid, active) {  
-            var _url = url + phoneid;
-            model.phone = phonetype;
-            model.phonetypeid = phonetypeid;
+         "updateEmail" : function (emailid, emailtype, emailtypeid, active) {  
+            var _url = url + emailid;
+            model.email = emailtype;
+            model.emailtypeid = emailtypeid;
             model.active = active;
             return $http.put(_url, model);
         }

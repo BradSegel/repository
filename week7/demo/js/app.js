@@ -9,23 +9,57 @@ var myApp = angular.module('myApp', [
 
 myApp.constant('config', {
     "endpoints": {
-       "phones" : 'http://localhost/PHPadvClassSpring2015/week5/demo/api/v1/phones',
-       "phonetypes" : 'http://localhost/PHPadvClassSpring2015/week5/demo/api/v1/phonetypes'
+       "emails" : 'http://localhost/PHPadvClassSpring2015/week5/demo/api/v1/emails/',
+       "emailtypes" : 'http://localhost/PHPadvClassSpring2015/week5/demo/api/v1/emailtypes/'
+   },
+    "models" : {
+        "emailtype" : {
+            "emailtype" : '',
+            "active" : ''
+        },
+        "email" : {
+            "email" : '',
+            "emailtypeid" : '',
+            "active" : ''
+        }   
     }
+    
 });
 
 myApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
         when('/', {
-            templateUrl: 'partials/phonetypes.html',
-            controller: 'PhoneTypesCtrl'
+            templateUrl: 'partials/emailtypes.html',
+            controller: 'EmailTypesCtrl'
         }).
-        when('/phones', {
-            templateUrl: 'partials/phones.html',
-            controller: 'PhonesCtrl'
+        when('/emails', {
+            templateUrl: 'partials/emails.html',
+            controller: 'EmailsCtrl'
         }).
         otherwise({
           redirectTo: '/'
         });
+        
+        
   }]);
+  myApp.config(['$httpProvider',
+  function($httpProvider) {
+    // Use x-www-form-urlencoded Content-Type
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+    
+    $httpProvider.defaults.transformRequest = function(data){
+        if (data === undefined) {
+            return data;
+        }
+        var str = [];
+        for(var key in data) {
+          if (data.hasOwnProperty(key)) {
+            var val = data[key];
+            str.push(encodeURIComponent(key) + "=" + encodeURIComponent(val));
+          }
+        }
+        return str.join("&");
+    };
+    
+}]);

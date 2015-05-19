@@ -2,25 +2,25 @@
 
 var appControllers = angular.module('appControllers', []);
 
-appControllers.controller('PhoneTypesCtrl', ['$scope', '$log', 'phoneTypesProvider', 
-    function($scope, $log, phoneTypesProvider) {
+appControllers.controller('EmailTypesCtrl', ['$scope', '$log', 'emailsTypesProvider', 
+    function($scope, $log, emailTypesProvider) {
     
-        $scope.phoneTypes = [];
+        $scope.emailTypes = [];
 
-        $scope.phonetype = '';
+        $scope.emailtype = '';
         $scope.active = '';
 
         $scope.update = false;
 
-        $scope.updatephonetypeid = '';
-        $scope.updatephonetype = '';
+        $scope.updateemailtypeid = '';
+        $scope.updateemailtype = '';
         $scope.updateactive = '';
 
-        $scope.addPhoneType = function() {
+        $scope.addEmailType = function() {
 
-            phoneTypesProvider.postPhoneType($scope.phonetype, $scope.active).success(function(response) {
+            emailTypesProvider.postEmailType($scope.emailtype, $scope.active).success(function(response) {
                 $log.log(response);
-                getPhoneTypes();
+                getEmailTypes();
             }).error(function (response, status) {
                $log.log(response);
             });                
@@ -30,20 +30,20 @@ appControllers.controller('PhoneTypesCtrl', ['$scope', '$log', 'phoneTypesProvid
 
         $scope.showUpdate = function(index) {
 
-            var phonetype = $scope.phoneTypes[index];
+            var emailtype = $scope.emailTypes[index];
 
-            $scope.updatephonetypeid = phonetype.phonetypeid;
-            $scope.updatephonetype = phonetype.phonetype;
-            $scope.updateactive = phonetype.active;
+            $scope.updateemailtypeid = emailtype.emailtypeid;
+            $scope.updateemailtype = emailtype.emailtype;
+            $scope.updateactive = emailtype.active;
             $scope.update = true;
 
         };
 
-        $scope.updatePhoneType = function() {
+        $scope.updateEmailType = function() {
 
-            phoneTypesProvider.updatePhoneType($scope.updatephonetypeid, $scope.updatephonetype, $scope.updateactive).success(function(response) {
+            emailTypesProvider.updateEmailType($scope.updateemailtypeid, $scope.updateemailtype, $scope.updateactive).success(function(response) {
                 $log.log(response);
-                getPhoneTypes();
+                getEmailTypes();
             }).error(function (response, status) {
                $log.log(response);
             });   
@@ -52,55 +52,55 @@ appControllers.controller('PhoneTypesCtrl', ['$scope', '$log', 'phoneTypesProvid
         };
 
 
-        $scope.deletePhoneType = function(phonetypeid) {
+        $scope.deleteEmailType = function(emailtypeid) {
 
-            phoneTypesProvider.deletePhoneType(phonetypeid).success(function(response) {
+            emailTypesProvider.deleteEmailType(emailtypeid).success(function(response) {
                 $log.log(response);
-                getPhoneTypes();
+                getEmailTypes();
             }).error(function (response, status) {
                $log.log(response);
             });        
         };
 
 
-        function getPhoneTypes() {    
-            phoneTypesProvider.getPhoneTypes().success(function(response) {
-                $scope.phoneTypes = response.data;
+        function getEmailTypes() {    
+            emailTypesProvider.getEmailTypes().success(function(response) {
+                $scope.emailTypes = response.data;
             }).error(function (response, status) {
                $log.log(response);
             });
         };
 
-        getPhoneTypes();
+        getEmailTypes();
     
     
 }])
 
-.controller('PhonesCtrl', ['$scope', '$log', 'phonesProvider', 'phoneTypesProvider',
-    function($scope, $log, phonesProvider, phoneTypesProvider) {
+.controller('EmailsCtrl', ['$scope', '$log', 'emailsProvider', 'emailTypesProvider',
+    function($scope, $log, emailsProvider, emailTypesProvider) {
     
-        $scope.phones = [];
-        $scope.phoneTypes = [];
+        $scope.emails = [];
+        $scope.emailTypes = [];
         
         
-        $scope.phone = '';
+        $scope.email = '';
         $scope.active = '';
-        $scope.phonetype = '';
+        $scope.emailtype = '';
         
         
         $scope.update = false;
 
-        $scope.updatephoneid = '';
-        $scope.updatephone = '';
-        $scope.updatephonetype = '';
+        $scope.updateemailid = '';
+        $scope.updateemail = '';
+        $scope.updateemailtype = '';
         $scope.updateactive = '';
         
         
-        $scope.addPhone = function() {
+        $scope.addEmail = function() {
 
-            phonesProvider.postPhone($scope.phone, $scope.phonetype.phonetypeid, $scope.active).success(function(response) {
+            emailsProvider.postEmail($scope.email, $scope.emailtype.emailtypeid, $scope.active).success(function(response) {
                 $log.log(response);
-                getPhones();
+                getEmails();
             }).error(function (response, status) {
                $log.log(response);
             });                
@@ -109,34 +109,34 @@ appControllers.controller('PhoneTypesCtrl', ['$scope', '$log', 'phoneTypesProvid
         
         $scope.showUpdate = function(index) {
 
-            var phone = $scope.phones[index];
+            var email = $scope.emails[index];
 
-            $scope.updatephoneid = phone.phoneid;
-            $scope.updatephone = phone.phone;
-            $scope.updatephonetype = getPhoneType(phone.phonetypeid);
-            $scope.updateactive = phone.active;
+            $scope.updateemailid = email.emailid;
+            $scope.updateemail = email.email;
+            $scope.updateemailtype = getEmailType(email.emailtypeid);
+            $scope.updateactive = email.active;
             $scope.update = true;
 
         };
         
         
-        function getPhoneType(id) {
-            var i = $scope.phoneTypes.length;
+        function getEmailType(id) {
+            var i = $scope.emailTypes.length;
             
             while ( i-- ) {
-                if ( $scope.phoneTypes[i].phonetypeid === id ) {
+                if ( $scope.emailTypes[i].emailtypeid === id ) {
                     break;
                 }
             }
             
-           return $scope.phoneTypes[i]; 
+           return $scope.emailTypes[i]; 
         };
 
-        $scope.updatePhone = function() {
+        $scope.updateEmail = function() {
 
-            phonesProvider.updatePhone($scope.updatephoneid, $scope.updatephone, $scope.updatephonetype.phonetypeid, $scope.updateactive).success(function(response) {
+            emailsProvider.updateEmail($scope.updateemailid, $scope.updateemail, $scope.updateemailtype.emailtypeid, $scope.updateactive).success(function(response) {
                 $log.log(response);
-                getPhones();
+                getEmails();
             }).error(function (response, status) {
                $log.log(response);
             });   
@@ -144,30 +144,30 @@ appControllers.controller('PhoneTypesCtrl', ['$scope', '$log', 'phoneTypesProvid
             $scope.update = false;
         };
         
-        $scope.deletePhone = function(phoneid) {
+        $scope.deleteEmail = function(emailid) {
 
-            phonesProvider.deletePhone(phoneid).success(function(response) {
+            emailsProvider.deleteEmail(emailid).success(function(response) {
                 $log.log(response);
-                getPhones();
+                getEmails();
             }).error(function (response, status) {
                $log.log(response);
             });        
         };
        
         
-        function getPhones() {   
-            phonesProvider.getPhones().success(function(response) {
-                 $scope.phones = response.data;              
+        function getEmails() {   
+            emailsProvider.getEmails().success(function(response) {
+                 $scope.emails = response.data;              
             }).error(function (response, status) {
                $log.log(response);
             });  
         };
         
-        getPhones();
+        getEmails();
         
-        phoneTypesProvider.getPhoneTypes().success(function(response) {
-            $scope.phoneTypes = response.data;
-            $scope.phonetype = $scope.phoneTypes[0];
+        emailTypesProvider.getEmailTypes().success(function(response) {
+            $scope.emailTypes = response.data;
+            $scope.emailtype = $scope.emailTypes[0];
         }).error(function (response, status) {
            $log.log(response);
         });
