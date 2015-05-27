@@ -13,22 +13,22 @@
  */
 namespace BradS\week2;
 use \PDO;
-class emailTypeService {
+class emailService {
    
     private $_errors = array();
     private $_Util;
     private $_DB;
     private $_Validator;
     private $_emailTypeDAO;
-    private $_emailTypeModel;
+    private $_emailModel;
 
 
-    public function __construct($db, $util, $validator, $emailTypeDAO, $emailtypeModel) {
+    public function __construct($db, $util, $validator, $emailDAO, $emailModel) {
         $this->_DB = $db;    
         $this->_Util = $util;
         $this->_Validator = $validator;
-        $this->_emailTypeDAO = $emailTypeDAO;
-        $this->_emailTypeModel = $emailtypeModel;
+        $this->_emailDAO = $emailDAO;
+        $this->_emailModel = $emailModel;
     }
 
 
@@ -43,7 +43,7 @@ class emailTypeService {
             $this->displayErrors();
         } else {
             
-            if (  $this->_emailTypeDAO->save($this->_emailTypeModel) ) {
+            if (  $this->_emailDAO->save($this->_emailModel) ) {
                 echo 'email Added';
             } else {
                 echo 'email could not be added Added';
@@ -56,10 +56,10 @@ class emailTypeService {
        
         if ( $this->_Util->isPostRequest() ) {                
             $this->_errors = array();
-            if( !$this->_Validator->emailTypeIsValid($this->_emailTypeModel->getemailtype()) ) {
-                 $this->_errors[] = 'email Type is invalid';
+            if( !$this->_Validator->emailIsValid($this->_emailModel->getemail()) ) {
+                 $this->_errors[] = 'email is invalid';
             } 
-            if( !$this->_Validator->activeIsValid($this->_emailTypeModel->getActive()) ) {
+            if( !$this->_Validator->activeIsValid($this->_emailModel->getActive()) ) {
                  $this->_errors[] = 'Active is invalid';
             } 
         }
@@ -82,14 +82,14 @@ class emailTypeService {
 
     public function displayemails() {        
        
-        $stmt = $this->_DB->prepare("SELECT * FROM emailtype");
+        $stmt = $this->_DB->prepare("SELECT * FROM email");
 
         if ($stmt->execute() && $stmt->rowCount() > 0) {
             
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
            
             foreach ($results as $value) {
-                echo '<p>', $value['emailtype'], '</p>';
+                echo '<p>', $value['email'], '</p>';
             }
         } else {
             echo '<p>No Data</p>';

@@ -90,7 +90,7 @@ class EmailDAO extends BaseDAO implements IDAO {
                 ":emailid" => $model->getEmailid()
                     );
          
-                    var_dump($binds); 
+      
          if ( $this->idExisit($model->getEmailid()) ) {
             
              $stmt = $db->prepare("UPDATE email SET email = :email, active = :active, emailtypeid = :emailtypeid WHERE emailid = :emailid");
@@ -131,8 +131,7 @@ class EmailDAO extends BaseDAO implements IDAO {
         if ( $stmt->execute(array(':emailid' => $id)) && $stmt->rowCount() > 0 ) {
             return true;
         } else {
-            $error = implode(",", $db->errorInfo());
-            $this->getLog()->logError($error);
+            
         }
          
          return false;

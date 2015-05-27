@@ -81,17 +81,39 @@ class emailTypeDAO implements IDAO {
          return false;
     }
     
+       public function update(IModel $model) {
+                 
+         $db = $this->getDB();
+         
+         $binds = array( ":emailtype" => $model->getEmailtype(),
+                          ":active" => $model->getActive(),
+                          ":emailtypeid" => $model->getEmailtypeid()
+                    );
+         
+                
+         if ( $this->idExisit($model->getEmailtypeid()) ) {
+            
+             $stmt = $db->prepare("UPDATE emailtype SET emailtype = :emailtype, active = :active WHERE emailtypeid = :emailtypeid");
+         
+             if ( $stmt->execute($binds) && $stmt->rowCount() > 0 ) {
+                return true;
+             } else {
+                return false;
+             }
+             
+         }
+       }
     
     public function delete($id) {
-          
-         $db = $this->getDB();         
-         $stmt = $db->prepare("Delete FROM emailtype WHERE emailtypeid = :emailtypeid");
-         
-         if ( $stmt->execute(array(':emailtypeid' => $id)) && $stmt->rowCount() > 0 ) {
-             return true;
-         }
-         
-         return false;
+            
+        $db = $this->getDB();         
+        $stmt = $db->prepare("Delete FROM emailtype WHERE emailtypeid = :emailtypeid");
+
+        if ( $stmt->execute(array(':emailtypeid' => $id)) && $stmt->rowCount() > 0 ) {
+            return true;
+        } else {
+            return false;
+        }
     }
      
     

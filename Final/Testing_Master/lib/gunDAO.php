@@ -60,15 +60,15 @@ class gunDAO implements IDAO {
                  
          $db = $this->getDB();
          
-       $binds = array( ":name" => $model->getemail(),
+       $binds = array( ":name" => $model->getname(),
                           ":caliber" => $model->getcaliber(),
-                         ":idFirearms" => $model->getemailTypeid() ,
-                ":sernum" => $model->getemailid(),
-                         ":manuf" => $model->getemailTypeid() ,
-                ":price" => $model->getemailid()
+                         ":idFirearms" => $model->getidFirearms() ,
+                ":sernum" => $model->getsernum(),
+                         ":manuf" => $model->getmanuf() ,
+                ":price" => $model->getprice()
                     );
                          
-         if ( !$this->idExisit($model->getEmailid()) ) {
+         if ( !$this->idExisit($model->getidFirearms()) ) {
              
              $stmt = $db->prepare("INSERT INTO firearms SET name = :name, idFirearms = :idFirearms, caliber = :caliber, sernum = :sernum, manuf = :manuf, price = :price, logged = now(), lastupdated = now()");
              

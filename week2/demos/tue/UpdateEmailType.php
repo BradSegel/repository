@@ -36,39 +36,39 @@ and open the template in the editor.
        
         $util = new Util();
         $validator = new Validator();
-        $emailDAO = new EmailDAO($db);
-        $emailModel = new emailModel();
+        $emailTypeDAO = new EmailTypeDAO($db);
+        $emailTypeModel = new emailTypeModel();
          
         if ( $util->isPostRequest() ) {
             
-            $emailModel->map(filter_input_array(INPUT_POST));
+            $emailTypeModel->map(filter_input_array(INPUT_POST));
                        
         } else {
-            $emailid = filter_input(INPUT_GET, 'emailid');
-            $emailModel = $emailDAO->getById($emailid);
+            $emailTypeid = filter_input(INPUT_GET, 'emailtypeid');
+            $emailTypeModel = $emailTypeDAO->getById($emailTypeid);
         }
         
         
-        $emailid = $emailModel->getEmailid();
-        $email = $emailModel->getEmail();
-        $active = $emailModel->getActive();  
+        $emailTypeid = $emailTypeModel->getEmailTypeid();
+        $emailType = $emailTypeModel->getEmailType();
+        $active = $emailTypeModel->getActive();  
               
+        var_dump($emailTypeid);
+        $emailTypeService = new EmailTypeService($db, $util, $validator, $emailTypeDAO, $emailTypeModel);
         
-        $emailService = new EmailService($db, $util, $validator, $emailDAO, $emailModel);
-      
-        if ( $emailDAO->idExisit($emailModel->getEmailid()) ) {
-            $emailService->saveForm();
+        if ( $emailTypeDAO->idExisit($emailTypeModel->getemailtypeid()) ) {
+            $emailTypeService->saveForm();
         }
 
         ?>
         
         
-         <h3>Edit Email</h3>
+         <h3>Edit Email type</h3>
         <form action="#" method="post">
-            <label>Email:</label> 
-            <input type="text" name="email" value="<?php echo $email; ?>" placeholder="" />
+            <label>Emailtype:</label> 
+            <input type="text" name="email" value="<?php echo $emailType; ?>" placeholder="" />
             <input type="number" max="1" min="0" name="active" value="<?php echo $active; ?>" />
-            <input type="hidden"  name="emailid" value="<?php echo $emailid; ?>" />
+            <input type="hidden"  name="emailid" value="<?php echo $emailTypeid; ?>" />
             <input type="hidden" name="action" value="save" />
             <input type="submit" value="Submit" />
         </form>
@@ -76,6 +76,6 @@ and open the template in the editor.
          <br />
          <br />
     
-        <a href="email-test.php">Back</a>
+         <a href="emailtype-test.php">Back</a>
     </body>
 </html>

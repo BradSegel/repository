@@ -65,7 +65,7 @@ include './bootstrap.php';
                     $emailModel->map(filter_input_array(INPUT_POST));
                     
                    // var_dump($emailtypeModel);
-                    if ( $emailDAO->save($emailModel) ) {
+                    if ( $emailDAO->create($emailModel) ) {
                         echo 'email Added';
                     } else {
                         echo 'email not added';
