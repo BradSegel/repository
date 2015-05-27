@@ -79,7 +79,7 @@ class gunModel implements IModel {
         $this->manuf = $manuf;
     }
     
-    function price($price) {
+    function setprice($price) {
         $this->price = $price;
     }
     function setLogged($logged) {
@@ -119,7 +119,7 @@ class gunModel implements IModel {
         }
         
         if ( array_key_exists('name', $values) ) {
-            $this->setemail($values['name']);
+            $this->setname($values['name']);
         }
         
         if ( array_key_exists('caliber', $values) ) {

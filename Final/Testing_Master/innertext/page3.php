@@ -13,9 +13,9 @@ include './bootstrap.php';
         $db = $pdo->getDB();
         
           $idFirearms = filter_input(INPUT_POST, 'idFirearms');
-        $gunName = filter_input(INPUT_POST, 'gunName');
+        $gunName = filter_input(INPUT_POST, 'name');
         $caliber = filter_input(INPUT_POST, 'caliber');
-        $serialNum = filter_input(INPUT_POST, 'serialNum');
+        $serialNum = filter_input(INPUT_POST, 'sernum');
         $manuf = filter_input(INPUT_POST, 'manuf');
         $price = filter_input(INPUT_POST, 'price');
         $ownerID = filter_input(INPUT_POST, 'ownerid');
@@ -39,13 +39,13 @@ include './bootstrap.php';
                      $errors[] = 'caliber is invalid';
                 }
                 
-                if ( !$validator->caliberIsValid($serialNum) ) {
+                if ( !$validator->sernumIsValid($serialNum) ) {
                      $errors[] = 'serialNum is invalid';
                 }
-                 if ( !$validator->caliberIsValid($manuf) ) {
+                 if ( !$validator->manufIsValid($manuf) ) {
                      $errors[] = 'manufacturer is invalid';
                 }
-                 if ( !$validator->caliberIsValid($price) ) {
+                 if ( !$validator->priceIsValid($price) ) {
                      $errors[] = 'price is invalid';
                 }
                 
@@ -58,12 +58,12 @@ include './bootstrap.php';
                     
                    
                     
-                  $emailModel = new emailModel();
+                  $gunModel = new gunModel();
                     
-                    $emailModel->map(filter_input_array(INPUT_POST));
+                    $gunModel->map(filter_input_array(INPUT_POST));
                     
                    // var_dump($emailtypeModel);
-                    if ( $gunDAO->create($emailModel) ) {
+                    if ( $gunDAO->create($gunModel) ) {
                         echo 'firearm Added';
                     } else {
                         echo 'firearm not added';
@@ -76,19 +76,19 @@ include './bootstrap.php';
 <h3>Add Firearm</h3>
         <form action="#" method="post">
             <label>Firearm name:</label> 
-            <input type="text" name="gunName" value="" placeholder="" />
+            <input type="text" name="name" value="" placeholder="" />
             <br /><br />
             <label>Caliber:</label>
              <input type="text" name="caliber" value="" placeholder="" />
              <br /><br />
              <label>Serial number:</label>
-             <input type="text" name="serialNum" value="" placeholder="" />
+             <input type="text" name="sernum" value="" placeholder="" />
              <br /><br />
              <label>Manufacturer:</label>
-             <input type="text" name="manufacturer" value="" placeholder="" />
+             <input type="text" name="manuf" value="" placeholder="" />
              <br /><br />
               <label>Sale price:</label>
-             <input type="text" name="salePrice" value="" placeholder="" />
+             <input type="text" name="price" value="" placeholder="" />
              <br /><br />
             <input type="submit" value="Submit" />
         </form>

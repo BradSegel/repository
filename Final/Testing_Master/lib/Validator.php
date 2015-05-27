@@ -17,9 +17,17 @@ class Validator {
      * @return boolean
      */
     public function gunIsValid($email) {
-        return ( is_string($email) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) !== false );
+        return ( is_string($email) && !empty($email));
     }
-
+ public function caliberIsValid($email) {
+        return ( is_string($email) && !empty($email));
+    }
+     public function sernumIsValid($email) {
+        return ( is_string($email) && !empty($email));
+    }
+     public function manufIsValid($email) {
+        return ( is_string($email) && !empty($email));
+    }
     /**
      * A method to check if the email type is valid.
      *
@@ -27,7 +35,7 @@ class Validator {
      *
      * @return boolean
      */
-    public function caliberIsValid($email) {
+    public function priceIsValid($email) {
         return ( is_string($email) && !empty($email) );
     }
     

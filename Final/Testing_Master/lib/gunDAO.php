@@ -33,7 +33,7 @@ class gunDAO implements IDAO {
     public function idExisit($id) {
         
         $db = $this->getDB();
-        $stmt = $db->prepare("SELECT emailid FROM Firearms WHERE idFirearms = :idFirearms");
+        $stmt = $db->prepare("SELECT idFirearms FROM Firearms WHERE idFirearms = :idFirearms");
          
         if ( $stmt->execute(array(':idFirearms' => $id)) && $stmt->rowCount() > 0 ) {
             return true;
@@ -61,16 +61,15 @@ class gunDAO implements IDAO {
          $db = $this->getDB();
          
        $binds = array( ":name" => $model->getname(),
-                          ":caliber" => $model->getcaliber(),
-                         ":idFirearms" => $model->getidFirearms() ,
+                          ":caliber" => $model->getcaliber(),    
                 ":sernum" => $model->getsernum(),
                          ":manuf" => $model->getmanuf() ,
                 ":price" => $model->getprice()
                     );
-                         
+                    
          if ( !$this->idExisit($model->getidFirearms()) ) {
              
-             $stmt = $db->prepare("INSERT INTO firearms SET name = :name, idFirearms = :idFirearms, caliber = :caliber, sernum = :sernum, manuf = :manuf, price = :price, logged = now(), lastupdated = now()");
+             $stmt = $db->prepare("INSERT INTO firearms SET name = :name, caliber = :caliber, sernum = :sernum, manuf = :manuf, price = :price, logged = now(), lastupdated = now()");
              
              if ( $stmt->execute($binds) && $stmt->rowCount() > 0 ) {
                 return true;
