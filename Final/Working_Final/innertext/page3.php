@@ -91,7 +91,7 @@ include './bootstrap.php';
              <input type="text" name="price" value="" placeholder="" />
              <br /><br />
               <label>owner id:</label>
-             <input type="text" name="owner_id" value="1" placeholder="" />
+              <input type="text" name="owner_id" value="1" readonly="true" placeholder="" />
             <input type="submit" value="Submit" />
         </form>
  

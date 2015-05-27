@@ -78,9 +78,9 @@ class gunDAO implements IDAO {
               
              }
              else{
-                 var_dump($db->errorInfo());
+                 
              }
-             
+             var_dump($db->errorInfo());
              }
      }
     
