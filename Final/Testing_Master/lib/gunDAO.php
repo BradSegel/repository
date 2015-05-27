@@ -69,7 +69,7 @@ class gunDAO implements IDAO {
                     
          if ( !$this->idExisit($model->getidFirearms()) ) {
              
-             $stmt = $db->prepare("INSERT INTO firearms SET name = :name, caliber = :caliber, sernum = :sernum, manuf = :manuf, price = :price, logged = now(), lastupdated = now()");
+             $stmt = $db->prepare("INSERT INTO firearms SET name = :name, caliber = :caliber, sernum = :sernum, manuf = :manuf, price = :price, owner_id = 1, logged = now(), lastupdated = now()");
              
              if ( $stmt->execute($binds) && $stmt->rowCount() > 0 ) {
                 return true;
