@@ -7,7 +7,7 @@ include './bootstrap.php';
 <?php
                 
     $dbConfig = array(
-    "DB_DNS"=>'mysql:host=localhost;port=3306;dbname=PHPadvClassSpring2015',
+    "DB_DNS"=>'mysql:host=localhost;port=3306;dbname=FirearmsDB',
     "DB_USER"=>'root',
     "DB_PASSWORD"=>''
         );
@@ -45,17 +45,18 @@ include './bootstrap.php';
      
 <table border="1" cellpadding="5">
 <tr>
-<th>Email</th>
-<th>Email Type</th>
-<th>Last updated</th>
-<th>Logged</th>
-<th>Active</th>
+<th>Firearm ID</th>
+<th>Name</th>
+<th>Caliber</th>
+<th>Serial Number</th>
+<th>Manufacturer</th>
+<th>Price</th>
 <th>Delete</th>
 <th>Update</th>
 </tr>
 <?php 
             $emails = $gunDAO->getAllRows(); 
             foreach ($emails as $value) 
-                {echo '<tr><td>',$value->getEmail(),'</td><td>',$value->getEmailtype(),'</td><td>',date("F j, Y g:i(s) a", strtotime($value->getLastupdated())),'</td><td>',date("F j, Y g:i(s) a", strtotime($value->getLogged())),'</td>';
-                 echo  '<td>', ( $value->getActive() == 1 ? 'Yes' : 'No') ,'</td>     <td> <a href=DelEmail.php?emailid=',$value->getEmailid(),'>Delete</a> </td>           <td> <a href=UpdateEmail.php?emailid=',$value->getEmailid(),'>Update</a> </td> </tr>' ;} ?>
+                {echo '<tr><td>',$value->getidFirearms(),'</td><td>',$value->getname(),'</td><td>',$value->getcaliber(),'</td><td>', $value->getsernum(),'</td>';
+                 echo  '<td>', $value->getmanuf(),'</td><td>', $value->getprice(),'</td>         <td> <a href=page6.php?idFirearms=',$value->getidFirearms(),'>Delete</a> </td>    <td> <a href=page5.php?idFirearms=',$value->getidFirearms(),'>Update</a> </td> </tr>' ;} ?>
 </table>
